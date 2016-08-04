@@ -1,9 +1,5 @@
 var Confluence = require('./confluence.js');
 
-const TEMPLATE_PAGE_ID = 75202648;
-
-var basepath = 'https://aevi-tools.atlassian.net/wiki/';
-var space = 'PS';
 
 if(process.argv.length < 9) {
   console.log("Usage: createconfpage targetParentPageId pageTitle uploadFileName username password template basepath space");
@@ -30,7 +26,7 @@ function uploadFile(filename, pageId) {
 confluence.getPage(pageTitle, space).then(function(pageId) {
   if(!pageId) {
     console.log("Creating new page with title " + pageTitle);
-    confluence.copyPage(pageTitle, TEMPLATE_PAGE_ID, targetParentPageId).then(function(pageId) {
+    confluence.copyPage(pageTitle, template, targetParentPageId).then(function(pageId) {
       uploadFile(uploadFileName, pageId);
     });
   } else {
