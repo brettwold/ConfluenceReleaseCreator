@@ -10,9 +10,9 @@ createconfpage -p={targetParentPageId} -t={pageTitle} -a={uploadFileName}
 
 Where:
 
-targetParentPageId - The page id of the parent page to create this new page under
-pageTitle - The new page title to create
-uploadFileName - The full filename/path to the file to attachment
+- targetParentPageId - The page id of the parent page to create this new page under
+- pageTitle - The new page title to create
+- uploadFileName - The full filename/path to the file to attachment
 
 ### Environment Variables
 
@@ -21,11 +21,11 @@ can be defined as environment variables or contained in a config file named
 confpage.json.
 
 
-CONF_USER - The username of a Confluence user under which to perform all operations
-CONF_PASSWORD - The password of the user
-CONF_TEMPLATE_ID - The page id of a page to use as a template for the new page (all content will be copied)
-CONF_BASE_URL - The base URL of your confluence instance e.g. https://myconf.atlassian.net/wiki/
-CONF_SPACE - The space name under which the new page is to be created
+- CONF_USER - The username of a Confluence user under which to perform all operations
+- CONF_PASSWORD - The password of the user
+- CONF_TEMPLATE_ID - The page id of a page to use as a template for the new page (all content will be copied)
+- CONF_BASE_URL - The base URL of your confluence instance e.g. https://myconf.atlassian.net/wiki/
+- CONF_SPACE - The space name under which the new page is to be created
 
 confpage.json format:
 

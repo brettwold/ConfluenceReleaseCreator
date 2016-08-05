@@ -1,9 +1,19 @@
 var Confluence = require('./confluence.js');
 var nconf = require('nconf');
+var path = require('path');
+var fs = require('fs');
 
 const ENV_VARIABLES = "Environment variables (or 'confpage.json') must be setup defining CONF_USER, CONF_PASSWORD, CONF_TEMPLATE_ID, CONF_BASE_URL, CONF_SPACE";
 
-nconf.env().file('./confpage.json');
+var conffilePath = path.join('.', 'confpage.json');
+var configfile = fs.readFileSync(conffilePath);
+if(configfile) {
+  console.log("Found config file: " + conffilePath);
+  var conf = JSON.parse(configfile);
+  for(key in conf) {
+    process.env[key] = conf[key];
+  }
+}
 
 nconf.argv({
   "p": {
@@ -25,6 +35,7 @@ nconf.argv({
     type: 'string'
   }
 });
+nconf.env();
 
 try {
   nconf.required(['CONF_USER', 'CONF_PASSWORD', 'CONF_TEMPLATE_ID', 'CONF_BASE_URL', 'CONF_SPACE']);
