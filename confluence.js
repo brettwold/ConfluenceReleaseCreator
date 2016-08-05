@@ -40,11 +40,20 @@ Confluence.prototype.getPage = function(title, space) {
       uri: self.basepath + 'rest/api/content/?title=' + title + '&spaceKey=' + space + '&expand=history',
       method: 'GET'
     }, function (error, response, body) {
-      var result = JSON.parse(body);
-      if(result.size > 0) {
-        resolve(result.results[0].id);
+      if (!error && response.statusCode == 200) {
+        var result = JSON.parse(body);
+        if(result.size > 0) {
+          resolve(result.results[0].id);
+        } else {
+          resolve();
+        }
       } else {
-        resolve();
+        if(error) {
+          console.log("Failed to search for page: " + error);
+        } else {
+          console.log(response);
+        }
+        reject(error);
       }
     });
   });
