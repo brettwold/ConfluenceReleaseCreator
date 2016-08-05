@@ -1,10 +1,9 @@
 var Confluence = require('./confluence.js');
 var nconf = require('nconf');
-var path = require('path');
 
 const ENV_VARIABLES = "Environment variables (or 'confpage.json') must be setup defining CONF_USER, CONF_PASSWORD, CONF_TEMPLATE_ID, CONF_BASE_URL, CONF_SPACE";
 
-nconf.env().file(path.resolve(__dirname) + '/confpage.json');
+nconf.env().file('./confpage.json');
 
 nconf.argv({
   "p": {
